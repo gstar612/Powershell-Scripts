@@ -1,7 +1,8 @@
 <#
 Created By: Harrison Muncaster
 Date: 01/20/2021
-Desc: Query Yellowpages for active services & then create/update Active Directory Distribution Groups. (Member Addition/Removal, Service/Group Deprecation, Group Creation, Group Attribute Updates)
+Desc: Query Yellowpages for active services & then create/update Active Directory Distribution Groups. 
+(Member Addition/Removal, Service/Group Deprecation, Group Creation, Group Attribute Updates)
 #>
 
 Import-Module ActiveDirectory
