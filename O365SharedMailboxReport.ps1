@@ -35,7 +35,6 @@ $Mailboxes | % {
         $PrimarySizeBytes = "No Mailbox"
         $PrimaryItemCount = "No Mailbox"
     }
-    
 
     if ($_.ArchiveStatus -eq "Active") {
         $MailBoxStatsArchived = Get-MailboxStatistics -archive $_.UserPrincipalName
