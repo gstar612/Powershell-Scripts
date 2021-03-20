@@ -40,7 +40,7 @@ Connect-MsolService -Credential $Creds -ErrorVariable ConnectingMSOLServiceError
 Import-PSSession $O365Session
 Connect-AzureAd -Credential $Creds
 
-$UnifiedGroups = Get-UnifiedGroup | select PrimarySMTPAddress,managedby,name,displayname,RequireSenderAuthenticationEnabled,acceptmessagesonlyfromsendersormembers
+$UnifiedGroups = Get-UnifiedGroup | select PrimarySMTPAddress,managedby,name,displayname,RequireSenderAuthenticationEnabled,AcceptMessagesOnlyFromSendersOrMembers
 $Counter = 1
 $TotalCount = $UnifiedGroups.count
 
