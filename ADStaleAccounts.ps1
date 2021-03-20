@@ -175,12 +175,9 @@ $OrgUnits | % {
                 Set-ADUser -identity $_.samaccountname -Enabled $false
                 Move-adobject -Identity $_.DistinguishedName -TargetPath $env:ARCHIVEDOU
             }
-
-        }
-             
+	    
+        }       
     }
-
-
 }
 
 $EntAppsEmail = $env:ENTAPPSEMAIL
@@ -193,13 +190,13 @@ $EmailClient = New-Object System.Net.Mail.SmtpClient $SMTPHost
 if ($30DayInactiveUsers) {
     $30SendTo = "$EntAppsEmail,$SecurityEmail,$ManagersEmail"
     $30DayMessage = Compose30DayEmail $30DayInactiveUsers $30SendTo
-    #$EmailClient.Send($30DayMessage)
+    $EmailClient.Send($30DayMessage)
 }
 
 # Compose & send email for users inactive 55 days
 if ($55DayInactiveUsers) {
     $55SendTo = "$EntAppsEmail,$SecurityEmail,$ManagersEmail,$ITServicesEmail"
     $55DayMessage = Compose55DayEmail $55DayInactiveUsers $55SendTo
-    #$EmailClient.Send($55DayMessage)
+    $EmailClient.Send($55DayMessage)
 }
  
