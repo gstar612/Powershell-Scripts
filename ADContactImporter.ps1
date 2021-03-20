@@ -21,7 +21,7 @@ $ContactsToImport | % {
     $Counter++
     
     if (!$_.mail) {
-        write-host "No Email Present - Skipping"
+        Write-Host "No Email Present - Skipping"
         return
     }
 
