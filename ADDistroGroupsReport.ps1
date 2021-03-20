@@ -12,17 +12,6 @@ Import-Module ActiveDirectory
 
 $ErrorActionPreference = "Stop" 
 
-# Establish connection w/ O365 env
-$Creds = Get-Credential
-$O365Session = New-PSSession –ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.outlook.com/powershell -Credential $Creds -Authentication Basic -AllowRedirection
-Connect-MsolService -Credential $Creds -ErrorVariable ConnectingMSOLServiceError
-Import-PSSession $O365Session
-Connect-AzureAd -Credential $Creds
-
-$DistGroups = Get-DistributionGroup -filter {(recipienttype -eq "MailUniversalDistributionGroup")} -ResultSize unlimited | select PrimarySMTPAddress,managedby,name,displayname,alias,RequireSenderAuthenticationEnabled,acceptmessagesonlyfromsendersormembers,whenchanged,whencreated
-$Counter = 1
-$TotalCount = $DistGroups.count
-
 # Function: Return user email from AD user name
 function GetUserEmail($User) {
     $UserEmail = $null
@@ -43,6 +32,17 @@ function GetUserEmail($User) {
     return $UserEmail
 }
 
+
+# Establish connection w/ O365 env
+$Creds = Get-Credential
+$O365Session = New-PSSession –ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.outlook.com/powershell -Credential $Creds -Authentication Basic -AllowRedirection
+Connect-MsolService -Credential $Creds -ErrorVariable ConnectingMSOLServiceError
+Import-PSSession $O365Session
+Connect-AzureAd -Credential $Creds
+
+$DistGroups = Get-DistributionGroup -filter {(recipienttype -eq "MailUniversalDistributionGroup")} -ResultSize unlimited | select PrimarySMTPAddress,managedby,name,displayname,alias,RequireSenderAuthenticationEnabled,acceptmessagesonlyfromsendersormembers,whenchanged,whencreated
+$Counter = 1
+$TotalCount = $DistGroups.count
 
 $DistGroups | % {
 
