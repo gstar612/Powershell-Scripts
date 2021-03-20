@@ -41,4 +41,5 @@ $ADUsers | % {
     Write-Host "Writing to file!"
 
     $_ | select UserPrincipalName,@{n="Active Mobile Device Count";e={$ActiveDeviceCount}},@{n="Total Mobile Device Count";e={$TotalDeviceCount}},@{n="Last Sync Dates Within 90 Days";e={$LastSyncDates}},@{n="Device OS";e={$DeviceOS}} | Export-Csv -path "$env:FILEPATH\ConnectedDevices_$TodaysDate.csv" -append
+
 }
