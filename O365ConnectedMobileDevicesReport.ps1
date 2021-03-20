@@ -6,7 +6,7 @@ Filter for devices that have synced within last 90 days and operating system is 
 Returned output: UserPrincipalName, ActiveMobileDeviceCount, TotalMobileDeviceCount, LastSyncDates, DeviceOS
 #>
 
-$ErrorActionPreference='Stop'
+$ErrorActionPreference="Stop"
 
 # Establish connection w/ O365 env
 $Creds = Get-Credential
